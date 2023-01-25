@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model DWChallange.Pages.EventManagement.RegistrationsModel
+
+<h4>Registrations for the event #name/link</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Registrations[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registrations[0].PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registrations[0].EmailAddress)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Registrations) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="./Index">Back to Events List</a>
+</div>

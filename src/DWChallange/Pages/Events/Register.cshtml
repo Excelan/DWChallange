@@ -1,0 +1,53 @@
+﻿@page "{id:int}"
+@model DWChallange.Pages.Events.RegisterModel
+
+
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+
+@if (!string.IsNullOrWhiteSpace(message)) {
+    <div class="alert alert-success" role="alert">@message</div>
+} else {
+    <h4>Register to the event "@Model.Event.Name"</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Registration.EventId" value=@Model.Event.Id />
+                <input type="hidden" asp-for="Event" value=@Model.Event />
+                <div class="form-group">
+                    <label asp-for="Registration.Name" class="control-label"></label>
+                    <input asp-for="Registration.Name" class="form-control" />
+                    <span asp-validation-for="Registration.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Registration.PhoneNumber" class="control-label"></label>
+                    <input asp-for="Registration.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Registration.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Registration.EmailAddress" class="control-label"></label>
+                    <input asp-for="Registration.EmailAddress" class="form-control" />
+                    <span asp-validation-for="Registration.EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
